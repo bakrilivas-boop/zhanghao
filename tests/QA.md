@@ -32,3 +32,11 @@ Only fictional local records were used. Local database files, test outputs and e
 - Anonymous inventory read, import, sold-status update and export returned 200. The fictional test account was removed and the original local record count was preserved.
 - Cross-origin writes still returned 403. No browser page errors or mobile horizontal overflow were observed.
 - TypeScript checking and all seven parser tests passed. Production access mode must be public to remove the platform's separate sign-in page.
+
+## Email masking verification
+
+- Check toggle/reveal on desktop and phone layouts, including masked checkbox and copy labels.
+- Search by full original email while masked; verify copying and TXT/JSON export still contain the original account.
+- Verify short email names, non-email accounts and mobile viewport fit.
+
+Verified with fictional local inventory on 2026-10-08: desktop and phone toggle/reveal passed, full-email search still matched the masked row, clipboard and TXT/JSON downloads matched the original raw record, and full email checkbox/copy labels were absent while masked. Widths 320, 390 and 700 had no horizontal overflow. All eight parser/privacy tests and TypeScript checking passed.

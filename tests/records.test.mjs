@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { BACKUP_APP, parseLine, parseImport, validateBackup } from "../lib/records.ts";
+import { BACKUP_APP, maskEmail, parseLine, parseImport, validateBackup } from "../lib/records.ts";
 
 test("delivery format preserves empty positions and token dashes", () => {
   const raw = "demo@example.com---pw------token-with-dashes---13800000000---https://example.com/sms";
@@ -34,4 +34,11 @@ test("malformed backup rejects the entire batch", () => {
 test("import limits use UTF-8 bytes and record count", () => {
   assert.throws(() => parseImport("中".repeat(1_333_334)), /4 MB/);
   assert.throws(() => parseImport(Array.from({ length: 2001 }, (_, i) => `user${i}---pw`).join("\n")), /2000/);
+});
+test("email masking conceals short names and preserves domain and non-email accounts", () => {
+  assert.equal(maskEmail("demo@example.com"), "d***o@example.com");
+  assert.equal(maskEmail("a@example.com"), "***@example.com");
+  assert.equal(maskEmail("ab@example.com"), "a***@example.com");
+  assert.equal(maskEmail("测试邮箱@example.com"), "测***箱@example.com");
+  assert.equal(maskEmail("plain-account"), "plain-account");
 });

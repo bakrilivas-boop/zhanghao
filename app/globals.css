@@ -62,7 +62,9 @@ h1 { margin:0; font-size:29px; letter-spacing:-.035em; font-weight:650; line-hei
 .sync-state [data-slot="button"] svg { width:14px; }
 .offline,.offline>svg { color:#c24f55; }
 .inventory-panel,.history-panel { background:#fff; border:1px solid #e2e8f1; border-radius:13px; overflow:hidden; box-shadow:0 3px 9px #26375003; }
-.inventory-toolbar { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:22px 24px; }
+.inventory-toolbar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; padding:22px 24px; }
+.inventory-tools { display:flex; align-items:center; gap:10px; }
+.mask-toggle { white-space:nowrap; flex-shrink:0; }
 .inventory-toolbar [data-slot="tabs-list"] { border-radius:8px; height:38px; padding:4px; background:#f2f5fa; }
 .inventory-toolbar [data-slot="tabs-trigger"] { padding:0 15px; gap:8px; font-size:14px; }
 .inventory-toolbar [data-slot="tabs-trigger"]>span { font-size:12px; color:#8c9ab0; }
@@ -181,7 +183,7 @@ h1 { margin:0; font-size:29px; letter-spacing:-.035em; font-weight:650; line-hei
  .main-actions { margin-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:10px; } .main-actions [data-slot="button"] { width:100%; }
  .stats-grid { gap:9px; margin-bottom:24px; } .stat-card { padding:14px 12px; border-radius:10px; } .stat-card>div>span { font-size:13px; } .stat-card strong { font-size:28px; margin:5px 0 0; } .stat-card small,.stat-icon { display:none; }
  .section-heading [data-slot="tabs-list"] { gap:16px; } .section-heading [data-slot="tabs-trigger"] { font-size:14px; gap:5px; } .sync-state>svg { display:none; } .sync-state { gap:3px; font-size:12px; } .sync-state [data-slot="button"] { width:26px; }
- .inventory-toolbar { display:block; padding:16px; } .inventory-toolbar [data-slot="tabs-trigger"] { padding-inline:13px; } .search-box { width:100%; margin-top:14px; } .search-box input { height:40px; }
+ .inventory-toolbar { display:block; padding:16px; } .inventory-toolbar [data-slot="tabs-trigger"] { padding-inline:13px; } .inventory-tools { margin-top:14px; flex-wrap:wrap; } .inventory-tools .search-box { flex:1; min-width:150px; } .search-box { width:100%; } .search-box input { height:40px; }
  .mobile-list { padding-inline:16px; } .mobile-account-top { gap:8px; } .mobile-account-top .status-badge { padding:4px 7px; font-size:12px; } .mobile-account-meta { margin-left:26px; gap:5px; }
  .selection-bar { padding:10px 14px; flex-wrap:wrap; gap:5px; } .selection-bar>div { gap:0; } .selection-bar [data-slot="button"] { padding-inline:7px; font-size:13px; }
  .table-footer { padding:12px 14px; gap:8px; font-size:12px; } .page-number { padding:0 5px; } .workspace-footer { display:block; line-height:1.8; } .workspace-footer>span:last-child { display:block; margin-top:3px; }

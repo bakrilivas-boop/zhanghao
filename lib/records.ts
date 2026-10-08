@@ -9,6 +9,14 @@ export type Backup = { app: string; version: number; exportedAt: string; account
 
 export class InputError extends Error {}
 
+export function maskEmail(account: string): string {
+  const at = account.lastIndexOf("@");
+  if (at <= 0 || at === account.length - 1) return account;
+  const name = Array.from(account.slice(0, at));
+  const masked = name.length === 1 ? "***" : `${name[0]}***${name.length > 2 ? name.at(-1) : ""}`;
+  return masked + account.slice(at);
+}
+
 export function parseLine(value: unknown): Parsed {
   if (typeof value !== "string") throw new InputError("账号内容必须是文本");
   const raw = value.replace(/^\uFEFF/, "").trim();
