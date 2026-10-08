@@ -1,4 +1,3 @@
-import { getChatGPTUser } from "@/app/chatgpt-auth";
 import { accountKey, database, eventStatement, listAccounts, pack } from "@/db/store";
 import { BACKUP_APP, InputError, parseImport, parseLine, validateBackup } from "@/lib/records";
 
@@ -6,7 +5,6 @@ export const dynamic = "force-dynamic";
 const reply = (value: unknown, status = 200) => Response.json(value, { status, headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" } });
 
 export async function GET(request: Request) {
-  if (!await getChatGPTUser()) return reply({ error: "登录已过期，请重新登录", signIn: true }, 401);
   try {
     const latest = await database().prepare("SELECT id FROM events ORDER BY rowid DESC LIMIT 1").first<{ id: string }>();
     const etag = `"${latest?.id || "empty"}"`;
@@ -24,7 +22,6 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  if (!await getChatGPTUser()) return reply({ error: "登录已过期，请重新登录", signIn: true }, 401);
   const origin = request.headers.get("origin");
   if (origin && origin !== new URL(request.url).origin) return reply({ error: "请求来源无效" }, 403);
   if (!request.headers.get("content-type")?.startsWith("application/json")) return reply({ error: "请求格式无效" }, 415);

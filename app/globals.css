@@ -23,8 +23,8 @@ button:not(:disabled),[role="tab"],[role="checkbox"],[role="option"] { cursor:po
 .brand-icon svg { width:25px; height:25px; }
 .brand-sub { display:block; font-size:12px; color:#7d899d; font-weight:400; margin-top:1px; }
 .topbar-right { display:flex; align-items:center; gap:24px; }
-.private-chip { display:flex; align-items:center; gap:7px; font-size:13px; color:#67758b; }
-.private-chip svg { width:15px; }
+.access-chip { display:flex; align-items:center; gap:7px; font-size:13px; color:#67758b; }
+.access-chip svg { width:15px; }
 .profile { display:flex; align-items:center; gap:9px; font-size:13px; color:#55647a; text-decoration:none; }
 .profile>span:first-child { display:grid; place-items:center; width:32px; height:32px; border-radius:50%; background:#edf2ff; color:#3159b2; font-weight:600; }
 .profile-email { max-width:230px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }

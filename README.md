@@ -4,7 +4,7 @@
 
 ## 使用
 
-1. 打开网站，使用创建这个网站的 ChatGPT 账号登录。网站默认只有所有者可以访问。
+1. 打开网站即可进入，无需 ChatGPT 登录。手机和电脑共用原网址及同一份云端库存。
 2. 点击 **批量导入**：直接粘贴，或选择/拖入 TXT 文件，一行一个账号。
 3. 页面自动显示有效、重复、格式错误数量，确认后保存到云端。重复账号不会覆盖已有凭据和销售状态。
 4. 点击 **标记已售**；误操作可点击 **恢复待售**。可勾选多条批量处理。
@@ -31,6 +31,7 @@ JSON 恢复采用合并：补回缺失账号，已存在的账号保持当前状
 - 销售状态、售出时间、备注在两端共享。旧版本修改会被拒绝，避免覆盖另一端的新记录。
 - 导入、卖出、恢复待售、编辑、导出、删除、备份恢复都记入操作历史。
 - 云端用 AES-GCM 加密账号原文及备注；密钥是 Sites 运行环境 Secret。不会将真实账号、密码或数据文件提交到 GitHub。
+- 网站按用户要求取消登录验证。任何拿到网址的人都能查看、导出和修改库存；云端加密不限制网站访问，请不要公开分享网址。
 - 导出文件是含凭据的明文文件，请自行妥善保管。
 
 ## 开发
@@ -47,7 +48,7 @@ node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1
 npm run dev
 ```
 
-本地开发登录 `/signin-with-chatgpt?return_to=/` 使用模拟身份；模拟登录只在本机开发环境生效，不进入正式构建。生产由 Sites 管理 ChatGPT 登录和私有访问控制，D1 数据库和密钥也由 Sites 配置。不要随意替换生产加密密钥，否则已有密文无法读取。
+本地和正式网站均无需登录。生产访问模式设为 public；D1 数据库和密钥由 Sites 配置。不要随意替换生产加密密钥，否则已有密文无法读取。
 
 验证：
 
@@ -65,6 +66,6 @@ npm run build
 
 - [Snipe-IT](https://github.com/grokability/snipe-it)：通过网页导入、识别重复记录及批量处理。参考 [导入说明](https://snipe-it.readme.io/docs/importing)。
 - [Grocy](https://github.com/grocy/grocy)：先显示库存、筛选状态，再直接执行库存操作。
-- [Vaultwarden](https://github.com/dani-garcia/vaultwarden)：凭据管理、登录后访问，以及备份与交付格式分别设计。
+- [Vaultwarden](https://github.com/dani-garcia/vaultwarden)：凭据管理，以及备份与交付格式分别设计。
 
 具体验证范围见 `tests/QA.md`。
